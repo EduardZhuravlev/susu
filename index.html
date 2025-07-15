@@ -14,11 +14,7 @@
             margin: 0;
             background-color: #f0f0f0;
         }
-        .container {
-            display: flex;
-            gap: 20px;
-        }
-        .login-container, .superadmin-container {
+        .login-container {
             background: white;
             padding: 20px;
             border-radius: 8px;
@@ -59,42 +55,31 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="login-container">
-            <h2>Вход для админов</h2>
-            <input type="text" id="username" placeholder="Логин" required>
-            <input type="password" id="password" placeholder="Пароль" required>
-            <button onclick="login()">Войти</button>
-            <p id="error" class="error">Неверный логин или пароль</p>
-        </div>
-        <div class="superadmin-container">
-            <h2>Вход для главного админа</h2>
-            <input type="password" id="superadmin-password" placeholder="Пароль главного админа" required>
-            <button onclick="superadminLogin()">Войти</button>
-            <p id="superadmin-error" class="error">Неверный пароль</p>
-        </div>
+    <div class="login-container">
+        <h2>Вход</h2>
+        <input type="text" id="username" placeholder="Логин" required>
+        <input type="password" id="password" placeholder="Пароль" required>
+        <button onclick="login()">Войти</button>
+        <p id="error" class="error">Неверный логин или пароль</p>
     </div>
     <script>
+        // Фиксированные пользователи
+        const users = [
+            { username: 'admin1', password: 'password1' },
+            { username: 'admin2', password: 'password2' },
+            { username: 'admin3', password: 'password3' },
+            { username: 'admin4', password: 'password4' },
+            { username: 'admin5', password: 'password5' }
+        ];
+
         function login() {
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
-            const admins = JSON.parse(localStorage.getItem('admins') || '[]');
-            const admin = admins.find(a => a.username === username && a.password === password);
-            if (admin) {
-                localStorage.setItem('currentAdmin', JSON.stringify({ username, lastLogin: new Date().toISOString() }));
+            const user = users.find(u => u.username === username && u.password === password);
+            if (user) {
                 window.location.href = 'https://young-z7wb.onrender.com';
             } else {
                 document.getElementById('error').style.display = 'block';
-            }
-        }
-
-        function superadminLogin() {
-            const superadminPassword = document.getElementById('superadmin-password').value;
-            if (superadminPassword === 'superadmin123') {
-                localStorage.setItem('currentAdmin', JSON.stringify({ username: 'superadmin', lastLogin: new Date().toISOString() }));
-                window.location.href = 'admin.html';
-            } else {
-                document.getElementById('superadmin-error').style.display = 'block';
             }
         }
     </script>
