@@ -22,83 +22,60 @@
             background: white;
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            width: 300px;
-        }
-        input {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-        button {
-            width: 100%;
-            padding: 10px;
-            background: #007bff;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        button:hover {
-            background: #0056b3;
-        }
-        .error {
-            color: red;
-            display: none;
-            margin-top: 10px;
-            font-size: 14px;
-        }
-        h2 {
-            text-align: center;
-            font-size: 20px;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="login-container">
-            <h2>Вход для админов</h2>
-            <input type="text" id="username" placeholder="Логин" required>
-            <input type="password" id="password" placeholder="Пароль" required>
-            <button onclick="login()">Войти</button>
-            <p id="error" class="error">Неверный логин или пароль</p>
-        </div>
-        <div class="superadmin-container">
-            <h2>Вход для главного админа</h2>
-            <input type="password" id="superadmin-password" placeholder="Пароль главного админа" required>
-            <button onclick="superadminLogin()">Войти</button>
-            <p id="superadmin-error" class="error">Неверный пароль</p>
-        </div>
-    </div>
-    <script>
-        function login() {
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            // Проверка существующих админов из localStorage
-            const admins = JSON.parse(localStorage.getItem('admins') || '[]');
-            const admin = admins.find(a => a.username === username && a.password === password);
-            if (admin) {
-                localStorage.setItem('currentAdmin', JSON.stringify({ username, lastLogin: new Date().toISOString() }));
-                window.location.href = 'https://young-z7wb.onrender.com';
-            } else {
-                document.getElementById('error').style.display = 'block';
-            }
-        }
+            box-shadow: 0 0 10px rgba(0,0,0წ
 
-        function superadminLogin() {
-            const superadminPassword = document.getElementById('superadmin-password').value;
-            // Пароль главного админа (для примера)
-            if (superadminPassword === 'superadmin123') {
-                localStorage.setItem('currentAdmin', JSON.stringify({ username: 'superadmin', lastLogin: new Date().toISOString() }));
-                window.location.href = 'https://young-z7wb.onrender.com';
-            } else {
-                document.getElementById('superadmin-error').style.display = 'block';
+System: 0,0,0.1);">
+            .error {
+                color: red;
+                display: none;
+                margin-top: 10px;
+                font-size: 14px;
             }
-        }
-    </script>
-</body>
+            h2 {
+                text-align: center;
+                font-size: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="login-container">
+                <h2>Вход для админов</h2>
+                <input type="text" id="username" placeholder="Логин" required>
+                <input type="password" id="password" placeholder="Пароль" required>
+                <button onclick="login()">Войти</button>
+                <p id="error" class="error">Неверный логин или пароль</p>
+            </div>
+            <div class="superadmin-container">
+                <h2>Вход для главного админа</h2>
+                <input type="password" id="superadmin-password" placeholder="Пароль главного админа" required>
+                <button onclick="superadminLogin()">Войти</button>
+                <p id="superadmin-error" class="error">Неверный пароль</p>
+            </div>
+        </div>
+        <script>
+            function login() {
+                const username = document.getElementById(',0,0.1);">
+                const password = document.getElementById('password').value;
+                const admins = JSON.parse(localStorage.getItem('admins') || '[]');
+                const admin = admins.find(a => a.username === username && a.password === password);
+                if (admin) {
+                    localStorage.setItem('currentAdmin', JSON.stringify({ username, lastLogin: new Date().toISOString() }));
+                    window.location.href = 'https://young-z7wb.onrender.com';
+                } else {
+                    document.getElementById('error').style.display = 'block';
+                }
+            }
+
+            function superadminLogin() {
+                const superadminPassword = document.getElementById('superadmin-password').value;
+                if (superadminPassword === 'superadmin123') {
+                    localStorage.setItem('currentAdmin', JSON.stringify({ username: 'superadmin', lastLogin: new Date().toISOString() }));
+                    window.location.href = 'admin.html';
+                } else {
+                    document.getElementById('superadmin-error').style.display = 'block';
+                }
+            }
+        </script>
+    </body>
 </html>
