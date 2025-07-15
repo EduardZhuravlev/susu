@@ -6,7 +6,10 @@ const port = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-let admins = [];
+// Обработчик корневого пути
+app.get('/', (req, res) => {
+    res.send('Сервер работает. Используйте /api/admins для управления админами.');
+});
 
 // GET /api/admins
 app.get('/api/admins', (req, res) => {
