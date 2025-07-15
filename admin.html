@@ -74,7 +74,7 @@
         <h2>Управление админами</h2>
         <div>
             <input type="text" id="new-username" placeholder="Новый логин">
-            <input type="password" id="new-password"t" placeholder="Новый пароль">
+            <input type="password" id="new-password" placeholder="Новый пароль">
             <button onclick="addAdmin()">Добавить админа</button>
             <p id="add-error" class="error">Админ с таким логином уже существует</p>
         </div>
@@ -102,7 +102,7 @@
             const adminList = document.getElementById('admin-list');
             adminList.innerHTML = '';
             admins.forEach((admin, index) => {
-                const isOnline = new Date(admin.lastLogin) > new Date(Date.now() - 5 * 60 * 1000); // Считаем онлайн, если вход был в последние 5 минут
+                const isOnline = new Date(admin.lastLogin) > new Date(Date.now() - 5 * 60 * 1000);
                 const row = document.createElement('tr');
                 row.innerHTML = `
                     <td>${admin.username}</td>
@@ -142,7 +142,7 @@
         // Выход
         function logout() {
             localStorage.removeItem('currentAdmin');
-            window.location.href = 'https://ВАШ_ЛОГИН.github.io/my-admin-panel/'; // Замените на ваш URL GitHub Pages
+            window.location.href = 'index.html';
         }
 
         // Инициализация списка
