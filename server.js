@@ -3,8 +3,11 @@ const cors = require('cors');
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.use(cors());
+app.use(cors({ origin: 'https://eduardzhuravlev.github.io' }));
 app.use(express.json());
+
+// Временное хранение в памяти (замените на MongoDB для продакшена)
+let admins = [];
 
 // Обработчик корневого пути
 app.get('/', (req, res) => {
@@ -20,7 +23,7 @@ app.get('/api/admins', (req, res) => {
 app.post('/api/admins', (req, res) => {
     const { username, password } = req.body;
     if (username && password && !admins.some(a => a.username === username)) {
-        admins.push({ username, password, lastLogin: null });
+        admins.push({ username, password, lastLogin: new Date().toISOString() });
         res.status(201).json({ message: 'Админ добавлен' });
     } else {
         res.status(400).json({ error: 'Неверные данные или админ уже существует' });
